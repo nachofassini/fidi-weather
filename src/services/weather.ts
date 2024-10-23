@@ -50,7 +50,7 @@ export const getCityWeatherForecast = async ({
   const weather = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=${cnt}&appid=${appId}&units=${units}&lang=${lang}`
   );
-  console.log("weather", weather.url);
+
   const weatherParsed = (await weather.json()) as CityWeatherForecast;
 
   // Calculate the average for each day
