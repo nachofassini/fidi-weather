@@ -61,7 +61,7 @@ export const ManageBranchesModal = ({
     searchInputRef.current?.focus();
   };
 
-  // Debounce search input search trigger
+  // Debounce search api triggering
   const debouncedSearchTerm = useDebounce(search, 300);
 
   useEffect(() => {
@@ -73,12 +73,13 @@ export const ManageBranchesModal = ({
   }, [debouncedSearchTerm]);
 
   const handleToggleBranch = (city: CityWithBranch) => {
+    // handle add/remove branch when selecting city
     if (city.isBranch) {
       setBranches(branches.filter((branch) => branch.id !== city.id));
     } else {
       setBranches([...branches, city]);
     }
-    // update search results isBranch flag
+    // updates active search results isBranch flag
     setCities((prevCities) =>
       prevCities.map((c) => {
         if (c.id === city.id) return { ...c, isBranch: !city.isBranch };
