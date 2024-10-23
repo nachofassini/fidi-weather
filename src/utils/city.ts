@@ -6,3 +6,6 @@ export const getCityId = (coordinates: Coordinates) => {
 
 export const getCityLink = (city: City) =>
   `/city/${city.name}/${city.lat}/${city.lon}`;
+
+export const getCityDescription = ({ state, country }: City) =>
+  `(${state ? `${state}, ` : ""}${country})`;

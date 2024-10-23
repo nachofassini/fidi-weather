@@ -9,7 +9,7 @@ import { City } from "@/types";
 import { ManageBranchesModal } from "@/modules/ManageBranchesModal";
 import { WeatherResume } from "@/modules/WeatherResume";
 import Link from "next/link";
-import { getCityLink } from "@/utils/city";
+import { getCityDescription, getCityLink } from "@/utils/city";
 
 export default function Home() {
   const [showManageBranchesModal, setShowManageBranchesModal] = useState(false);
@@ -61,7 +61,7 @@ export default function Home() {
               >
                 <p className="text-gray-600 dark:text-white flex gap-2">
                   <span>{branch.name}</span>
-                  <span>({[branch.state, branch.country].join(", ")})</span>
+                  <span>{getCityDescription(branch)}</span>
                 </p>
                 <div className="ml-0 md:ml-auto mr-0 md:mr-4 order-1 md:order-0 w-full md:w-auto">
                   <WeatherResume city={branch} />

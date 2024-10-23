@@ -2,7 +2,7 @@
 
 import { useStorageState } from "@/hooks/useStorageState";
 import { City } from "@/types";
-import { getCityLink } from "@/utils/city";
+import { getCityDescription, getCityLink } from "@/utils/city";
 import { Accordion, Sidebar, Spinner } from "flowbite-react";
 import Link from "next/link";
 import { memo } from "react";
@@ -34,10 +34,7 @@ export function Nav() {
                   key={branch.id}
                   href={getCityLink(branch)}
                 >
-                  {branch.name +
-                    " (" +
-                    [branch.state, branch.country].join(", ") +
-                    ")"}
+                  {`${branch.name} ${getCityDescription(branch)}`}
                 </Sidebar.Item>
               ))
             ) : (
@@ -59,10 +56,7 @@ export function Nav() {
                 {branches.map((branch) => (
                   <li key={branch.id} className="border-b mb-1">
                     <Link key={branch.id} href={getCityLink(branch)}>
-                      {branch.name +
-                        " (" +
-                        [branch.state, branch.country].join(", ") +
-                        ")"}
+                      {`${branch.name} ${getCityDescription(branch)}`}
                     </Link>
                   </li>
                 ))}

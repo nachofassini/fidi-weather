@@ -14,7 +14,7 @@ import { Divider } from "@/components/Divider";
 import { searchCityByName } from "@/services/city";
 import { City } from "@/types";
 import { useDebounce } from "@/hooks/useDebounce";
-import { getCityId } from "@/utils/city";
+import { getCityDescription, getCityId } from "@/utils/city";
 
 type CityWithBranch = City & { isBranch: boolean };
 
@@ -125,14 +125,14 @@ export const ManageBranchesModal = ({
               <Spinner />
             </div>
           ) : cities?.length ? (
-            cities?.map((city) => (
+            cities?.map((city, index) => (
               <div
-                key={getCityId(city)}
+                key={`${getCityId(city)}/${index}`}
                 className="flex justify-between items-center my-1 border-b pb-1"
               >
                 <p className="text-gray-600 dark:text-white flex gap-2">
                   <span>{city.name}</span>
-                  <span>({[city.state, city.country].join(", ")})</span>
+                  <span>{getCityDescription(city)}</span>
                 </p>
                 <Button
                   color={city.isBranch ? "warning" : undefined}
