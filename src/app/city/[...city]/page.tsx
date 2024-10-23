@@ -22,9 +22,12 @@ export default async function CityWeather({
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <h1 className="text-2xl">
-        Sucursal: <span className="font-bold">{weather?.name || cityName}</span>
-      </h1>
+      <Card>
+        <h1 className="text-2xl">
+          Sucursal:{" "}
+          <span className="font-bold">{weather?.name || cityName}</span>
+        </h1>
+      </Card>
 
       <Suspense fallback={<WeatherResumeSkeleton />}>
         <CityWeatherResume lat={lat} lon={lon} />
