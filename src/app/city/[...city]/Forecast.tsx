@@ -8,7 +8,7 @@ import { IoRainyOutline, IoWater } from "react-icons/io5";
 export default async function CityForecast(coordinates: Coordinates) {
   const forecast = await getCityWeatherForecast(coordinates);
   return (
-    <div className="grid grid-cols-2 lg:flex  gap-4 justify-center lg:justify-between overflow-x-scroll">
+    <>
       {forecast?.list?.map((day, i) => (
         <div
           key={i}
@@ -42,6 +42,6 @@ export default async function CityForecast(coordinates: Coordinates) {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 }

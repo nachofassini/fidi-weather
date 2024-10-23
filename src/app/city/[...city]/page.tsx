@@ -3,6 +3,10 @@ import { Suspense } from "react";
 import { Card } from "flowbite-react";
 import CityForecast from "./Forecast";
 import { CityWeatherResume } from "./Resume";
+import {
+  ForecastSkeleton,
+  WeatherResumeSkeleton,
+} from "@/components/skeletonds";
 
 export default async function CityWeather({
   params,
@@ -19,15 +23,17 @@ export default async function CityWeather({
         Sucursal: <span className="font-bold">{cityName}</span>
       </h1>
 
-      <Suspense>
+      <Suspense fallback={<WeatherResumeSkeleton />}>
         <CityWeatherResume lat={lat} lon={lon} />
       </Suspense>
 
       <Card>
         <p>Pronostico para la próxima semana</p>
-        <Suspense>
-          <CityForecast lat={lat} lon={lon} />
-        </Suspense>
+        <div className="grid grid-cols-2 lg:flex  gap-4 justify-center lg:justify-between overflow-x-scroll">
+          <Suspense fallback={<ForecastSkeleton />}>
+            <CityForecast lat={lat} lon={lon} />
+          </Suspense>
+        </div>
       </Card>
 
       <div className="h-[400px] rounded-lg border border-gray-200 shadow-md dark:border-gray-700 overflow-hidden">
