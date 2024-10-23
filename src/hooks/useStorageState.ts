@@ -39,6 +39,7 @@ export async function setStorageItemAsync<T>(key: string, value: T | null) {
   }
 }
 
+// Creates a useState hook that persists it's state in localStorage with the given key
 export function useStorageState<T>(
   key: string,
   initialValue?: T
