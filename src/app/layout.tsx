@@ -4,6 +4,10 @@ import "./globals.css";
 
 import { ThemeModeScript } from "flowbite-react";
 import { Header } from "@/modules/Header";
+import dayjs from "dayjs";
+import "dayjs/locale/es";
+
+dayjs.locale("es");
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

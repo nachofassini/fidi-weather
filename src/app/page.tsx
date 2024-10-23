@@ -9,6 +9,7 @@ import { City } from "@/types";
 import { ManageBranchesModal } from "@/modules/ManageBranchesModal";
 import { WeatherResume } from "@/modules/WeatherResume";
 import Link from "next/link";
+import { getCityLink } from "@/utils/city";
 
 export default function Home() {
   const [showManageBranchesModal, setShowManageBranchesModal] = useState(false);
@@ -53,7 +54,7 @@ export default function Home() {
             branches?.map((branch) => (
               <Link
                 key={branch.id}
-                href={`/city/${branch.name}/${branch.lat}/${branch.lon}`}
+                href={getCityLink(branch)}
                 className="flex items-center py-1 border-b gap-2 flex-wrap md:flex-nowrap"
               >
                 <p className="text-gray-600 dark:text-white flex gap-2">
