@@ -6,7 +6,8 @@ import { CityWeatherResume } from "./Resume";
 import {
   ForecastSkeleton,
   WeatherResumeSkeleton,
-} from "@/components/skeletonds";
+} from "@/components/skeletons";
+import { getCityWeatherByCoordinates } from "@/services/weather";
 
 export default async function CityWeather({
   params,
@@ -17,10 +18,12 @@ export default async function CityWeather({
   const lat = Number(params.city?.[1]);
   const lon = Number(params.city?.[2]);
 
+  const weather = await getCityWeatherByCoordinates({ lat, lon });
+
   return (
     <div className="w-full flex flex-col gap-4">
       <h1 className="text-2xl">
-        Sucursal: <span className="font-bold">{cityName}</span>
+        Sucursal: <span className="font-bold">{weather?.name || cityName}</span>
       </h1>
 
       <Suspense fallback={<WeatherResumeSkeleton />}>
