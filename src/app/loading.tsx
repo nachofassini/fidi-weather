@@ -1,5 +1,9 @@
 import { Spinner } from "flowbite-react";
 
 export default function Loading() {
-  return <Spinner />;
+  return (
+    <div className="text-center">
+      <Spinner />
+    </div>
+  );
 }

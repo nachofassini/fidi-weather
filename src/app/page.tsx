@@ -13,6 +13,8 @@ import { getCityLink } from "@/utils/city";
 
 export default function Home() {
   const [showManageBranchesModal, setShowManageBranchesModal] = useState(false);
+  const toggleShowManageBranchesModal = () =>
+    setShowManageBranchesModal((prev) => !prev);
 
   const [[loading, branches], setBranches] = useStorageState<City[]>(
     "branches",
@@ -27,7 +29,7 @@ export default function Home() {
     <>
       <ManageBranchesModal
         show={showManageBranchesModal}
-        onDismiss={() => setShowManageBranchesModal(false)}
+        onDismiss={toggleShowManageBranchesModal}
         branches={branches || []}
         setBranches={setBranches}
       />
@@ -39,7 +41,7 @@ export default function Home() {
           <Button
             size="xs"
             type="button"
-            onClick={() => setShowManageBranchesModal(true)}
+            onClick={toggleShowManageBranchesModal}
           >
             <HiPlusCircle className="mr-2 h-4 w-4" /> Agregar sucursal
           </Button>
@@ -82,7 +84,7 @@ export default function Home() {
                 size="xs"
                 outline
                 type="button"
-                onClick={() => setShowManageBranchesModal(true)}
+                onClick={toggleShowManageBranchesModal}
               >
                 ¡Agrega una nueva!
               </Button>

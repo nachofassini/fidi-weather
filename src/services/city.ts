@@ -7,10 +7,15 @@ export const searchCityByName = async ({
   limit = 10,
   lang = "es",
 }: ISearchCityByName): Promise<OpenApiCity[]> => {
-  const weather = await fetch(
+  const response = await fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
       q
     )}&limit=${limit}&appid=${appId}&lang=${lang}`
   );
-  return weather.json();
+
+  if (!response.ok) {
+    throw new Error("Error searching cities");
+  }
+
+  return response.json();
 };

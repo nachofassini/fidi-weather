@@ -39,16 +39,17 @@ export const ManageBranchesModal = ({
   const searchCities = async (q: string) => {
     setLoadingCities(true);
     try {
-      const cities = await searchCityByName({ q });
+      const newCities = await searchCityByName({ q });
       setCities(
-        cities.map((city) => ({
+        newCities.map((city) => ({
           ...city,
           id: getCityId(city),
           isBranch: branches.some((branch) => branch.id === getCityId(city)),
         }))
       );
     } catch (error) {
-      console.error("Error searching cities", error);
+      setCities([]);
+      console.error(error);
     } finally {
       setLoadingCities(false);
     }
@@ -57,6 +58,7 @@ export const ManageBranchesModal = ({
   const cleanSearch = () => {
     setSearch("");
     setCities([]);
+    searchInputRef.current?.focus();
   };
 
   // Debounce search input search trigger
