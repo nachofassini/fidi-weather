@@ -1,7 +1,5 @@
 import { BranchNavigator } from "@/components/BranchNavigator";
 
-export const experimental_ppr = true;
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-full flex-col lg:flex-row lg:overflow-hidden w-full gap-4">

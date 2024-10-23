@@ -5,8 +5,9 @@ import { City } from "@/types";
 import { getCityLink } from "@/utils/city";
 import { Accordion, Sidebar, Spinner } from "flowbite-react";
 import Link from "next/link";
+import { memo } from "react";
 
-export function BranchNavigator() {
+export function Nav() {
   const [[loading, branches]] = useStorageState<City[]>("branches", []);
 
   return (
@@ -28,7 +29,11 @@ export function BranchNavigator() {
               </Sidebar.Item>
             ) : branches && branches.length > 0 ? (
               branches.map((branch) => (
-                <Sidebar.Item key={branch.id} href={getCityLink(branch)}>
+                <Sidebar.Item
+                  as={Link}
+                  key={branch.id}
+                  href={getCityLink(branch)}
+                >
                   {branch.name +
                     " (" +
                     [branch.state, branch.country].join(", ") +
@@ -71,3 +76,5 @@ export function BranchNavigator() {
     </>
   );
 }
+
+export const BranchNavigator = memo(Nav);
